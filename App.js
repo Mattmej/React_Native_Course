@@ -39,14 +39,20 @@ export default class App extends Component<Props> {
         <Text style={styles.instructions}>To get started, edit App.js</Text>
         <Text style={styles.instructions}>{instructions}</Text> */}
 
-        <TextInput 
-          style={{width: 300}}
-          placeholder="An awesome place"
-          value={this.state.placeName} 
-          onChangeText={this.placeNameChangedHandler}
-        />
+        <View style={styles.inputContainer}>
 
-        <Button title="Add" />
+          <TextInput 
+            // style={{width: 300}}
+            style={styles.placeInput}
+            placeholder="An awesome place"
+            value={this.state.placeName} 
+            onChangeText={this.placeNameChangedHandler}
+          />
+          <Button title="Add" style={styles.placeButton} />
+
+
+        </View>
+
       </View>
     );
   }
@@ -60,6 +66,22 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  inputContainer: {
+    // flex: 1,
+
+    // Takes up full available width
+    width: "100%",
+
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+  placeInput: {
+    width: "70%"
+  },
+  placeButton: {
+    width: "30%"
   },
   welcome: {
     fontSize: 20,

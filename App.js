@@ -10,6 +10,8 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TextInput, Button} from 'react-native';
 // import { start } from 'repl';
 
+import ListItem from './src/components/ListItem/ListItem';
+
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -22,8 +24,9 @@ type Props = {};
 export default class App extends Component<Props> {
 
   state = {
-    placeName: ''
-  }
+    placeName: '',
+    places: []
+  };
 
   placeNameChangedHandler = (val) => {
     this.setState({
@@ -31,28 +34,61 @@ export default class App extends Component<Props> {
     });
   };
 
+  // Trigger handler upon button press.
+  placeSubmitHandler = () => {
+
+    // If the user enters an empty string
+    if (this.state.placeName.trim() === "") {
+      return;
+    }
+
+    // Here, we use the function syntax
+    // where we take the previous state
+    // and then return the object which should be merged w/ the state.
+    this.setState(prevState => {
+      return {
+
+        // Concat will add a new element and return a new array
+        // to update immutably.
+        // We will add to places whatever the user entered
+        // User entered "prevState.placeName"
+        places: prevState.places.concat(prevState.placeName)
+      }
+    })
+  }
+
   render() {
+
+    // Displays whatever place we input into the text field
+    // after pressing "add" button.
+    const placesOutput = this.state.places.map((place, i) => (
+      // <Text key={i}>{place}</Text>
+      <ListItem key={i} placeName={place} />
+    ))
     return (
       <View style={styles.container}>
-
-        {/* <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text> */}
-
+ 
         <View style={styles.inputContainer}>
 
           <TextInput 
-            // style={{width: 300}}
             style={styles.placeInput}
             placeholder="An awesome place"
             value={this.state.placeName} 
             onChangeText={this.placeNameChangedHandler}
           />
-          <Button title="Add" style={styles.placeButton} />
+          <Button title="Add" 
+            style={styles.placeButton} 
+            onPress={this.placeSubmitHandler} 
+          />
 
 
         </View>
 
+        {/* Here, we render our list in this view.
+            It doesn't have any special styling attached.
+            Will only take up an amount of width 
+            that the child element needs. */}
+        <View style={styles.listContainer}>{placesOutput}</View>
       </View>
     );
   }
@@ -82,6 +118,9 @@ const styles = StyleSheet.create({
   },
   placeButton: {
     width: "30%"
+  },
+  listContainer: {
+    width: "100%"
   },
   welcome: {
     fontSize: 20,

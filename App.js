@@ -11,6 +11,7 @@ import {Platform, StyleSheet, Text, View, TextInput, Button} from 'react-native'
 // import { start } from 'repl';
 
 import ListItem from './src/components/ListItem/ListItem';
+import UserInput from './src/components/UserInput/UserInput';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -68,21 +69,13 @@ export default class App extends Component<Props> {
     return (
       <View style={styles.container}>
  
-        <View style={styles.inputContainer}>
-
-          <TextInput 
-            style={styles.placeInput}
-            placeholder="An awesome place"
-            value={this.state.placeName} 
-            onChangeText={this.placeNameChangedHandler}
-          />
-          <Button title="Add" 
-            style={styles.placeButton} 
-            onPress={this.placeSubmitHandler} 
-          />
+      <UserInput 
+        placeName={this.props.placeName}
+        placeNameChangedHandler={this.placeNameChangedHandler(placeName)}
+        placeSubmitHandler={this.placeSubmitHandler} 
+      />
 
 
-        </View>
 
         {/* Here, we render our list in this view.
             It doesn't have any special styling attached.
@@ -102,22 +95,6 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-  },
-  inputContainer: {
-    // flex: 1,
-
-    // Takes up full available width
-    width: "100%",
-
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
-  },
-  placeInput: {
-    width: "70%"
-  },
-  placeButton: {
-    width: "30%"
   },
   listContainer: {
     width: "100%"

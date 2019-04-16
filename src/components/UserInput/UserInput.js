@@ -1,23 +1,76 @@
 import React, {Component} from 'react';
 import { StyleSheet, TextInput, Button, View } from 'react-native';
 
-const userInput = (props) => {
-    
-  <View style={styles.inputContainer}>
 
-      <TextInput 
-      style={styles.placeInput}
-      placeholder="An awesome place"
-      value={props.value} 
-      onChangeText={props.onChangeText}
-      />
-      <Button title="Add" 
-      style={styles.placeButton} 
-      onPress={props.onPress} 
-      />
+class UserInput extends Component {
 
 
-  </View>
+  state = {
+    placeName: ''
+  };
+
+
+  placeNameChangedHandler = (val) => {
+    this.setState({
+      placeName: val
+    });
+  };
+
+
+  // // Trigger handler upon button press.
+  // placeAddedHandler = (placeName) => {
+
+  //   // If the user enters an empty string
+  //   if (this.state.placeName.trim() === "") {
+  //     return;
+  //   }
+
+  //   // // Here, we use the function syntax
+  //   // // where we take the previous state
+  //   // // and then return the object which should be merged w/ the state.
+  //   // this.setState(prevState => {
+  //   //   return {
+
+  //   //     // Concat will add a new element and return a new array
+  //   //     // to update immutably.
+  //   //     // We will add to places whatever the user entered
+  //   //     places: prevState.places.concat(prevState.placeName)
+  //   //   }
+  //   // })
+
+  //   this.props.onPlaceAdded(this.state.placeName);
+  // }
+
+  // this.props.onPlaceAdded(this.state.placeName);
+
+
+
+
+  render() {
+    return (
+      
+      <View style={styles.inputContainer}>
+
+        <TextInput 
+          style={styles.placeInput}
+          placeholder="An awesome place"
+          value={this.state.placeName} 
+          onChangeText={this.placeNameChangedHandler}
+        />
+
+        <Button title="Add" 
+          style={styles.placeButton} 
+          // onPress={this.placeAddedHandler} 
+          onPress={this.placeAddedHandler}
+        />
+
+
+      </View>
+
+
+    )
+  }
+
 };
 
 const styles = StyleSheet.create({
@@ -43,4 +96,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default userInput;
+export default UserInput;

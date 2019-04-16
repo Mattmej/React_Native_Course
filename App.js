@@ -9,6 +9,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TextInput, Button} from 'react-native';
 // import { start } from 'repl';
+import UserInput from './src/components/UserInput/UserInput';
 
 import ListItem from './src/components/ListItem/ListItem';
 
@@ -24,23 +25,23 @@ type Props = {};
 export default class App extends Component<Props> {
 
   state = {
-    placeName: '',
+    // placeName: '',
     places: []
   };
 
-  placeNameChangedHandler = (val) => {
-    this.setState({
-      placeName: val
-    });
-  };
+  // placeNameChangedHandler = (val) => {
+  //   this.setState({
+  //     placeName: val
+  //   });
+  // };
 
   // Trigger handler upon button press.
-  placeSubmitHandler = () => {
+  placeAddedHandler = (placeName) => {
 
-    // If the user enters an empty string
-    if (this.state.placeName.trim() === "") {
-      return;
-    }
+    // // If the user enters an empty string
+    // if (this.state.placeName.trim() === "") {
+    //   return;
+    // }
 
     // Here, we use the function syntax
     // where we take the previous state
@@ -52,7 +53,7 @@ export default class App extends Component<Props> {
         // to update immutably.
         // We will add to places whatever the user entered
         // User entered "prevState.placeName"
-        places: prevState.places.concat(prevState.placeName)
+        places: prevState.places.concat(placeName)
       }
     })
   }
@@ -68,9 +69,9 @@ export default class App extends Component<Props> {
     return (
       <View style={styles.container}>
  
-        <View style={styles.inputContainer}>
+        {/* <View style={styles.inputContainer}>
 
-          <TextInput 
+           <TextInput 
             style={styles.placeInput}
             placeholder="An awesome place"
             value={this.state.placeName} 
@@ -78,11 +79,13 @@ export default class App extends Component<Props> {
           />
           <Button title="Add" 
             style={styles.placeButton} 
-            onPress={this.placeSubmitHandler} 
-          />
+            onPress={this.placeAddedHandler} 
+          /placeName/     />
 
 
-        </View>
+        </View> */}
+
+        <UserInput onPlaceAdded={this.placeAddedHandler} />
 
         {/* Here, we render our list in this view.
             It doesn't have any special styling attached.

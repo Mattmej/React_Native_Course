@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, TextInput, Button } from 'react-native';
+import { StyleSheet, TextInput, Button, View } from 'react-native';
 
 const userInput = (props) => {
     
@@ -8,12 +8,12 @@ const userInput = (props) => {
       <TextInput 
       style={styles.placeInput}
       placeholder="An awesome place"
-      value={props.placeName} 
-      onChangeText={props.placeNameChangedHandler}
+      value={props.value} 
+      onChangeText={props.onChangeText}
       />
       <Button title="Add" 
       style={styles.placeButton} 
-      onPress={props.placeSubmitHandler} 
+      onPress={props.onPress} 
       />
 
 

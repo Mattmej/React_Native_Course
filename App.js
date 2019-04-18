@@ -29,19 +29,9 @@ export default class App extends Component<Props> {
     places: []
   };
 
-  // placeNameChangedHandler = (val) => {
-  //   this.setState({
-  //     placeName: val
-  //   });
-  // };
 
   // Trigger handler upon button press.
   placeAddedHandler = (placeName) => {
-
-    // // If the user enters an empty string
-    // if (this.state.placeName.trim() === "") {
-    //   return;
-    // }
 
     // Here, we use the function syntax
     // where we take the previous state
@@ -65,26 +55,11 @@ export default class App extends Component<Props> {
     const placesOutput = this.state.places.map((place, i) => (
       // <Text key={i}>{place}</Text>
       <ListItem key={i} placeName={place} />
-    ))
+    ));
+
     return (
       <View style={styles.container}>
  
-        {/* <View style={styles.inputContainer}>
-
-           <TextInput 
-            style={styles.placeInput}
-            placeholder="An awesome place"
-            value={this.state.placeName} 
-            onChangeText={this.placeNameChangedHandler}
-          />
-          <Button title="Add" 
-            style={styles.placeButton} 
-            onPress={this.placeAddedHandler} 
-          /placeName/     />
-
-
-        </View> */}
-
         <UserInput onPlaceAdded={this.placeAddedHandler} />
 
         {/* Here, we render our list in this view.

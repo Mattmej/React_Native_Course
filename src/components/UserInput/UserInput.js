@@ -11,20 +11,26 @@ class UserInput extends Component {
 
 
   placeNameChangedHandler = (val) => {
+
+    // Change state so that state.placeName = [value we enter]
     this.setState({
       placeName: val
     });
   };
 
   placeSubmitHandler = () => {
+
+    // If the placeName is empty, do nothing.
     if (this.state.placeName.trim() ==="") {
       return;
     }
 
+    // Performs a function passed via props. Parameter will be state.placeName.
     this.props.onPlaceAdded(this.state.placeName);
   };
 
 
+  // What is rendered when we place a UserInput object inside App.js render function.
   render() {
     return (
       

@@ -9,9 +9,10 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TextInput, Button} from 'react-native';
 // import { start } from 'repl';
-import UserInput from './src/components/UserInput/UserInput';
+import UserInput from './src/components/UserInput/UserInput'
 
 import ListItem from './src/components/ListItem/ListItem';
+import List from './src/components/List/List';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -66,13 +67,15 @@ export default class App extends Component<Props> {
             It doesn't have any special styling attached.
             Will only take up an amount of width 
             that the child element needs. */}
-        <View style={styles.listContainer}>{placesOutput}</View>
+        {/* <View style={styles.listContainer}>{placesOutput}</View> */}
+        <List placesOutput={placesOutput}/>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+
   container: {
     flex: 1,
     padding: 20,
@@ -81,25 +84,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  inputContainer: {
-    // flex: 1,
 
-    // Takes up full available width
-    width: "100%",
-
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
-  },
-  placeInput: {
-    width: "70%"
-  },
-  placeButton: {
-    width: "30%"
-  },
-  listContainer: {
-    width: "100%"
-  },
   welcome: {
     fontSize: 20,
     textAlign: 'center',

@@ -51,12 +51,6 @@ export default class App extends Component<Props> {
 
   render() {
 
-    // Displays whatever place we input into the text field
-    // after pressing "add" button.
-    const placesOutput = this.state.places.map((place, i) => (
-      // <Text key={i}>{place}</Text>
-      <ListItem key={i} placeName={place} />
-    ));
 
     return (
       <View style={styles.container}>
@@ -68,7 +62,8 @@ export default class App extends Component<Props> {
             Will only take up an amount of width 
             that the child element needs. */}
         {/* <View style={styles.listContainer}>{placesOutput}</View> */}
-        <List placesOutput={placesOutput}/>
+        {/* <List placesOutput={placesOutput}/> */}
+        <List places={this.state.places} />
       </View>
     );
   }
